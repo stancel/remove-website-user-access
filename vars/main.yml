@@ -1,5 +1,5 @@
 ---
-# vars file for setup-website-user-access
+# vars file for remove-website-user-access
 
 # Sites to setup and host on the webserver
 remove_website_user_access_list:

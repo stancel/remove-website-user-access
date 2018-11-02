@@ -1,5 +1,5 @@
 ---
-# tasks file for setup-website-user-access
+# tasks file for remove-website-user-access
 
 - name: "Remove the Linux user, {{ item.name }}, on the box"
   user:

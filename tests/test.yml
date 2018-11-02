@@ -2,4 +2,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - setup-website-user-access
+    - stancel.remove_website_user_access
