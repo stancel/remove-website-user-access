@@ -7,6 +7,7 @@
     name: "{{ item.name }}" 
     remove: yes
   with_items: '{{ remove_website_user_access_list }}'
+  ignore_errors: yes
 
 - name: "Remove the SSH config for the Linux user, {{ item.name }}"
   blockinfile:
@@ -20,6 +21,7 @@
         ForceCommand internal-sftp
     marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
   with_items: '{{ remove_website_user_access_list }}'
+  ignore_errors: yes
   notify: restart sshd
 
 
