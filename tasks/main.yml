@@ -1,0 +1,25 @@
+---
+# tasks file for setup-website-user-access
+
+- name: "Remove the Linux user, {{ item.name }}, on the box"
+  user:
+    state: absent
+    name: "{{ item.name }}" 
+    remove: yes
+  with_items: '{{ remove_website_user_access_list }}'
+
+- name: "Remove the SSH config for the Linux user, {{ item.name }}"
+  blockinfile:
+    state: absent
+    path: /etc/ssh/sshd_config
+    block: |
+      Match User {{ item.name }}
+        ChrootDirectory {{ remove_website_user_access_web_root }}/{{ item.name }}
+        X11Forwarding no
+        AllowTcpForwarding no
+        ForceCommand internal-sftp
+    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
+  with_items: '{{ remove_website_user_access_list }}'
+  notify: restart sshd
+
+

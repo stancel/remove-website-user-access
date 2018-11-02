@@ -1,0 +1,10 @@
+---
+# handlers file for remove-website-user-access
+
+- name: restart sshd
+  service: 
+    name: ssh 
+    state: restarted
+    enabled: yes
+
+
